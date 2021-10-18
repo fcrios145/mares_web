@@ -10,6 +10,10 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class ReceiptComponent implements OnInit {
   downloadUrl: string = '';
+  page: string = '';
+  day: string = '';
+  month: string = '';
+  year: string = '';
   constructor(private afStorage: AngularFireStorage) { }
 
   getDownloadUrl() {
@@ -35,6 +39,7 @@ export class ReceiptComponent implements OnInit {
 
     // Embed the Helvetica font
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
     // Get the first page of the document
     const pages = pdfDoc.getPages()
@@ -46,15 +51,7 @@ export class ReceiptComponent implements OnInit {
     // Get the width and height of the first page
     const { width, height } = firstPage.getSize()
 
-    // Draw a string of text diagonally across the first page
-    firstPage.drawText('This text', {
-      x: 5,
-      y: height / 2 + 300,
-      size: 50,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      rotate: degrees(-45),
-    })
+  
     const svgFirst3Digits =
       'M 10 10 H 38 V 27 H 10 L 10 10';
     const svgDates =
@@ -72,10 +69,27 @@ export class ReceiptComponent implements OnInit {
     firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1), borderColor: rgb(0,0,0), borderWidth: 1 })
 
     firstPage.moveRight(52);
-    firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1), borderColor: rgb(0,0,0), borderWidth: 1 })
+    firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1)} )
 
     firstPage.moveRight(52);
-    firstPage.drawSvgPath(svgDateYear, { color: rgb(1, 1, 1), borderColor: rgb(0,0,0), borderWidth: 1 })
+    firstPage.drawSvgPath(svgDateYear, { color: rgb(1, 1, 1)} )
+
+      // Draw a string of text diagonally across the first page
+      firstPage.drawText('10', {
+        x: 64,
+        y: 613,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
+
+      firstPage.drawText('20', {
+        x: 117,
+        y: 613,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
 
     // Draw the SVG path as a black line
     // firstPage.moveDown(25)

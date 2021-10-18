@@ -1,3 +1,24 @@
 <h1>Recibos</h1>
 
+<mat-form-field appearance="fill">
+    <mat-label>Folio</mat-label>
+    <input matInput name="page" type="text" [(ngModel)]="page">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Dia</mat-label>
+    <input matInput name="day" type="text" [(ngModel)]="day">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Mes</mat-label>
+    <input matInput name="month" type="text" [(ngModel)]="month">
+  </mat-form-field>
+  <mat-form-field appearance="fill"> 
+    <mat-label>Año</mat-label>
+    <input matInput name="year" type="text" [(ngModel)]="year">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Textarea</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
 <button mat-raised-button (click)="generatePdf()">Generar PDF</button>
