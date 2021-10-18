@@ -1,10 +1,26 @@
 <h1>Login</h1>
-<form>
-    <label for="email">Email</label>
-    <input name="email" type="text" [(ngModel)]="email" placeholder="email">
-    <br>
-    <label for="password">Password</label>
-    <input name="password" type="password" [(ngModel)]="password" placeholder="password">
-    <button (click)="login()" type="submit">Login</button>
-    <button (click)="logout()">Logout</button>
-</form>
+
+<mat-card class='login'>
+    <form class="example-form">
+  
+      <mat-form-field class='full-width' appearance='fill'>
+        <mat-label>Email</mat-label>
+        <input matInput name="email" type="text" [(ngModel)]="email" placeholder="email">
+      </mat-form-field>
+  
+  
+      <mat-form-field class='full-width' appearance='fill'>
+        <mat-label>Contrasena</mat-label>
+        <input name="password" matInput type="password" [(ngModel)]="password" placeholder="password">
+      </mat-form-field>
+  
+      <div fxLayout='column'>
+        <button (click)="login()" fxFlexAlign='end' type='submit' mat-raised-button color="primary">ENTRAR</button>
+        <button (click)="logout()" fxFlexAlign='end' type='submit' mat-raised-button color="primary">SALIR</button>
+      </div>
+    </form>
+  
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+  
+  </mat-card>
+  
