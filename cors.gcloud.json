@@ -1,6 +1,6 @@
 [
     {
-        "origin": ["http://localhost:4200"],
+        "origin": ["http://localhost:4200", "https://cocky-knuth-45a1ad.netlify.app"],
         "method": ["GET"],
         "maxAgeSeconds": 3600
     }
