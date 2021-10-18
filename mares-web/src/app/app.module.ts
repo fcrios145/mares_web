@@ -20,7 +20,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatMenuModule} from '@angular/material/menu';
+import { HomeComponent } from './home/home.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 
 
@@ -29,7 +33,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    HomeComponent,
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

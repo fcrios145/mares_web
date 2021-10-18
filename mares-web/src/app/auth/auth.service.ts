@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   user: Observable<firebase.User | null>;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
   }
 
@@ -18,6 +19,7 @@ export class AuthService {
       .signInWithEmailAndPassword (email, password)
       .then(value => {
         console.log('Nice, it worked!');
+        this.router.navigate(['/']);
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
@@ -25,6 +27,8 @@ export class AuthService {
   }
 
   logout() {
-    this.firebaseAuth.signOut();
+    this.firebaseAuth.signOut().then((value: any) => {
+      this.router.navigate(['/login']);   
+    });
   }
 }

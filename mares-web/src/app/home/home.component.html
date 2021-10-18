@@ -1,0 +1,36 @@
+<mat-toolbar>
+    <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>BestoApp</span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>account_circle</mat-icon>
+    </button> -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Salir</span>
+        </button>
+      </mat-menu>
+  </mat-toolbar>
+  
+  <mat-drawer-container  autosize>
+    <mat-drawer #drawer mode="side" opened='true' >
+      <div fxLayout='column'>
+        <a mat-button routerLink="/" routerLinkActive="active">Nutri</a>
+        <a mat-button routerLink="/" routerLinkActive="active">Hemoglobina</a>
+        <a mat-button routerLink="/recibos" routerLinkActive="active">Recibos</a>
+      </div>
+    </mat-drawer>
+  
+    <div fxLayout='column' class='content'>
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>
+  
+  
