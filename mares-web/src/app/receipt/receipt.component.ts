@@ -17,7 +17,7 @@ export class ReceiptComponent implements OnInit {
   constructor(private afStorage: AngularFireStorage) { }
 
   getDownloadUrl() {
-    this.afStorage.ref('receipt_chihuahua.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
+    this.afStorage.ref('receipt_chihuahua_fillable_4.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
   }
 
   ngOnInit(): void {
@@ -33,63 +33,90 @@ export class ReceiptComponent implements OnInit {
 
     // Load a PDFDocument from the existing PDF bytes
     const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    console.log(pdfDoc);
+    const form = pdfDoc.getForm()
+
+    form.getTextField('folio').setText('123123');
+    form.getTextField('uadministrativa').setText('UADMINISTRATIVA');
+    form.getTextField('arearecaudadora').setText('arearecaudadora');
+    form.getTextField('domicilio').setText('DOMICILIO');
+    form.getTextField('estado').setText('estado');
+    form.getTextField('delegacion').setText('delegacion');
+    form.getTextField('cp').setText('cp');
+    form.getTextField('dia').setText('20');
+    form.getTextField('mes').setText('06');
+    form.getTextField('anio').setText('2021');
+    form.getTextField('nombre').setText('nombre');
+    form.getTextField('domiciliopersona').setText('domiciliopersona');
+    form.getTextField('paispersona').setText('paispersona');
+    form.getTextField('ciudadpersona').setText('ciudadpersona');
+    form.getTextField('rfc').setText('rfc');
+    form.getTextField('curp').setText('curp');
+    form.getTextField('curp').setText('curp');
+    form.getTextField('cppersona').setText('cppersona');
+    form.getTextField('telefono').setText('telefono');
+    form.getTextField('claveconcepto').setText('claveconcepto');
+    form.getTextField('cadenadependencia').setText('cadenadependencia');
 
 
 
-    // Embed the Helvetica font
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
-    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
-
-    // Get the first page of the document
-    const pages = pdfDoc.getPages()
-    const firstPage = pages[0]
-
-    firstPage.moveTo(100, firstPage.getHeight() - 5)
 
 
-    // Get the width and height of the first page
-    const { width, height } = firstPage.getSize()
+
+
+
+    // // // Embed the Helvetica font
+    // // const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+    // // const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+
+    // // // Get the first page of the document
+    // // const pages = pdfDoc.getPages()
+    // // const firstPage = pages[0]
+
+    // // firstPage.moveTo(100, firstPage.getHeight() - 5)
+
+
+    // // // Get the width and height of the first page
+    // // const { width, height } = firstPage.getSize()
 
   
-    const svgFirst3Digits =
-      'M 10 10 H 38 V 27 H 10 L 10 10';
-    const svgDates =
-    'M 10 10 H 23 V 23 H 10 L 10 10';
-    const svgDateYear =
-    'M 10 10 H 30 V 23 H 10 L 10 10';
+    // // const svgFirst3Digits =
+    // //   'M 10 10 H 38 V 27 H 10 L 10 10';
+    // // const svgDates =
+    // // 'M 10 10 H 23 V 23 H 10 L 10 10';
+    // // const svgDateYear =
+    // // 'M 10 10 H 30 V 23 H 10 L 10 10';
 
-      // Draw SVG - Erase last 3 digits at the TOP
-    firstPage.moveDown(7);
-    firstPage.moveRight(413);
-    firstPage.drawSvgPath(svgFirst3Digits, { color: rgb(0.8, 0.8, 0.8), borderColor: rgb(0,1,0), borderWidth: 2 })
+    // //   // Draw SVG - Erase last 3 digits at the TOP
+    // // firstPage.moveDown(7);
+    // // firstPage.moveRight(413);
+    // // firstPage.drawSvgPath(svgFirst3Digits, { color: rgb(0.8, 0.8, 0.8), borderColor: rgb(0,1,0), borderWidth: 2 })
 
-    firstPage.moveDown(147);
-    firstPage.moveLeft(460);
-    firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1), borderColor: rgb(0,0,0), borderWidth: 1 })
+    // // firstPage.moveDown(147);
+    // // firstPage.moveLeft(460);
+    // // firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1), borderColor: rgb(0,0,0), borderWidth: 1 })
 
-    firstPage.moveRight(52);
-    firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1)} )
+    // // firstPage.moveRight(52);
+    // // firstPage.drawSvgPath(svgDates, { color: rgb(1, 1, 1)} )
 
-    firstPage.moveRight(52);
-    firstPage.drawSvgPath(svgDateYear, { color: rgb(1, 1, 1)} )
+    // // firstPage.moveRight(52);
+    // // firstPage.drawSvgPath(svgDateYear, { color: rgb(1, 1, 1)} )
 
-      // Draw a string of text diagonally across the first page
-      firstPage.drawText('10', {
-        x: 64,
-        y: 613,
-        size: 8,
-        font: helveticaFont,
-        color: rgb(0, 0, 0)
-      });
+    // //   // Draw a string of text diagonally across the first page
+    // //   firstPage.drawText('10', {
+    // //     x: 64,
+    // //     y: 613,
+    // //     size: 8,
+    // //     font: helveticaFont,
+    // //     color: rgb(0, 0, 0)
+    // //   });
 
-      firstPage.drawText('20', {
-        x: 117,
-        y: 613,
-        size: 8,
-        font: helveticaFont,
-        color: rgb(0, 0, 0)
-      });
+    // //   firstPage.drawText('20', {
+    // //     x: 117,
+    // //     y: 613,
+    // //     size: 8,
+    // //     font: helveticaFont,
+    // //     color: rgb(0, 0, 0)
+    // //   });
 
     // Draw the SVG path as a black line
     // firstPage.moveDown(25)
