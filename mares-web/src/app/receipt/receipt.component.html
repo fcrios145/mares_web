@@ -1,24 +1,66 @@
 <h1>Recibos</h1>
 
 <mat-form-field appearance="fill">
+    <mat-label>Ciudad</mat-label>
+    <mat-select [(ngModel)]="ciudadUISelected">
+        <mat-option *ngFor="let item of cities" [value]="item.key">{{ item.value }}</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
     <mat-label>Folio</mat-label>
-    <input matInput name="page" type="text" [(ngModel)]="page">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
+    <input matInput name="folio" type="text" [(ngModel)]="folio">
+</mat-form-field>
+<mat-form-field appearance="fill">
     <mat-label>Dia</mat-label>
-    <input matInput name="day" type="text" [(ngModel)]="day">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
+    <input matInput name="dia" type="text" [(ngModel)]="dia">
+</mat-form-field>
+<mat-form-field appearance="fill">
     <mat-label>Mes</mat-label>
-    <input matInput name="month" type="text" [(ngModel)]="month">
-  </mat-form-field>
-  <mat-form-field appearance="fill"> 
+    <input matInput name="mes" type="text" [(ngModel)]="mes">
+</mat-form-field>
+<mat-form-field appearance="fill">
     <mat-label>Año</mat-label>
-    <input matInput name="year" type="text" [(ngModel)]="year">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+    <input matInput name="anio" type="text" [(ngModel)]="anio">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput name="nombre" type="text" [(ngModel)]="nombre">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Domicilio</mat-label>
+    <input matInput name="domiciliopersona" type="text" [(ngModel)]="domiciliopersona">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Pais</mat-label>
+    <input matInput name="paispersona" type="text" [(ngModel)]="paispersona">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Ciudad</mat-label>
+    <input matInput name="ciudadpersona" type="text" [(ngModel)]="ciudadpersona">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>RFC</mat-label>
+    <input matInput name="rfc" type="text" [(ngModel)]="rfc">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>CURP</mat-label>
+    <input matInput name="curp" type="text" [(ngModel)]="curp">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Codigo Postal</mat-label>
+    <input matInput name="cppersona" type="text" [(ngModel)]="cppersona">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Telefono</mat-label>
+    <input matInput name="telefono" type="text" [(ngModel)]="telefono">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Clave Concepto</mat-label>
+    <input matInput name="claveconcepto" type="text" [(ngModel)]="claveconcepto">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Cadena de Dependencia</mat-label>
+    <input matInput name="claveconcepto" type="text" [(ngModel)]="cadenadependencia">
+</mat-form-field>
 
 <button mat-raised-button (click)="generatePdf()">Generar PDF</button>

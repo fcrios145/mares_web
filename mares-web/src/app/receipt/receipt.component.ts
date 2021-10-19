@@ -10,14 +10,41 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class ReceiptComponent implements OnInit {
   downloadUrl: string = '';
-  page: string = '';
+
+  folio: string = '';
   day: string = '';
   month: string = '';
   year: string = '';
+  uadministrativa: string = '';
+  arearecaudadora: string = '';
+  domicilio: string = '';
+  estado: string = '';
+  delegacion: string = '';
+  cp: string = '';
+  dia: string = '';
+  mes: string = '';
+  anio: string = '';
+  nombre: string = '';
+  domiciliopersona: string = '';
+  paispersona: string = '';
+  ciudadpersona: string = '';
+  rfc: string = '';
+  curp: string = '';
+  cppersona: string = '';
+  telefono: string = '';
+  claveconcepto: string = '';
+  cadenadependencia: string = '';
+
+  ciudadUISelected: string = 'CHIHUAHUA';
+  cities = [
+    { key: '', value: '' },
+    { key: 'CHIHUAHUA', value: 'CHIHUAHUA', extraFields: {} }
+  ]
+
   constructor(private afStorage: AngularFireStorage) { }
 
   getDownloadUrl() {
-    this.afStorage.ref('receipt_chihuahua_fillable_11.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
+    this.afStorage.ref('receipt_chihuahua_fillable_form.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
   }
 
   ngOnInit(): void {
@@ -34,41 +61,33 @@ export class ReceiptComponent implements OnInit {
     // Load a PDFDocument from the existing PDF bytes
     const pdfDoc = await PDFDocument.load(existingPdfBytes)
     const form = pdfDoc.getForm()
-    const folioField = form.getTextField('folio')
-    const unt = form.getTextField('untitled1')
-    unt.enableRichFormatting();
-    unt.setText('<b>222321323</b>');
+
+    if (this.ciudadUISelected === 'CHIHUAHUA') {
+      this.uadministrativa = '628 - CHIHUAHUA';
+      this.arearecaudadora = '313 - DIRECCION GENERAL DE PROTECCION Y MEDICINA PREVENTIVA';
+      this.domicilio = 'KM. 3 CARRETERA A AVALOS S/N, COL. RANCHERIA JUAREZ, CHIHUAHUA';
+      this.estado = 'CHIHUAHUA';
+      this.delegacion = 'CHIHUAHUA';
+      this.cp = '31064';
+    }
     
-    form.getTextField('uadministrativa').setText('UADMINISTRATIVA');
-    form.getTextField('arearecaudadora').setText('AREARECAUDADORA');
-    form.getTextField('domicilio').setText('DOMICILIO');
-    form.getTextField('estado').setText('ESTADO');
-    form.getTextField('delegacion').setText('DELEGACION');
-    form.getTextField('cp').setText('CP');
-    form.getTextField('dia').setText('20');
-    form.getTextField('mes').setText('06');
-    form.getTextField('anio').setText('2021');
-    form.getTextField('nombre').setText('NOMBRE');
-    form.getTextField('domiciliopersona').setText('DOMICILIOPERSONA');
-    form.getTextField('paispersona').setText('PAISPERSONA');
-    form.getTextField('ciudadpersona').setText('CIUDADPERSONA');
-    form.getTextField('rfc').setText('RFC');
-    form.getTextField('curp').setText('CURP');
-    form.getTextField('cppersona').setText('CPPERSONA');
-    form.getTextField('telefono').setText('TELEFONO');
-    form.getTextField('claveconcepto').setText('');
-    form.getTextField('cadenadependencia').setText('');
-
-    folioField.enableRichFormatting();
-    folioField.setText("98213892389");
-    
-
-
-
-
-
-
-
+    form.getTextField('uadministrativa').setText(this.uadministrativa);
+    form.getTextField('arearecaudadora').setText(this.arearecaudadora);
+    form.getTextField('domicilio').setText(this.domicilio);
+    form.getTextField('estado').setText(this.estado);
+    form.getTextField('delegacion').setText(this.delegacion);
+    form.getTextField('cp').setText(this.cp);
+    form.getTextField('dia').setText(this.dia);
+    form.getTextField('mes').setText(this.mes);
+    form.getTextField('anio').setText(this.anio);
+    form.getTextField('nombre').setText(this.nombre);
+    form.getTextField('domiciliopersona').setText(this.domiciliopersona);
+    form.getTextField('paispersona').setText(this.paispersona);
+    form.getTextField('ciudadpersona').setText(this.ciudadpersona);
+    form.getTextField('rfc').setText(this.rfc);
+    form.getTextField('curp').setText(this.curp);
+    form.getTextField('cppersona').setText(this.cppersona);
+    form.getTextField('telefono').setText(this.telefono);
 
 
     // // // Embed the Helvetica font
@@ -81,10 +100,8 @@ export class ReceiptComponent implements OnInit {
 
     firstPage.moveTo(100, firstPage.getHeight() - 5)
 
-
     // // // Get the width and height of the first page
     // // const { width, height } = firstPage.getSize()
-
   
     // // const svgFirst3Digits =
     // //   'M 10 10 H 38 V 27 H 10 L 10 10';
@@ -117,7 +134,7 @@ export class ReceiptComponent implements OnInit {
     // //     color: rgb(0, 0, 0)
     // //   });
 
-      firstPage.drawText('20092902', {
+      firstPage.drawText(this.cadenadependencia, {
         x: 205,
         y: 424,
         size: 8,
@@ -125,13 +142,23 @@ export class ReceiptComponent implements OnInit {
         color: rgb(0, 0, 0)
       });
 
-      firstPage.drawText('CLAVECONCEPTO', {
+      firstPage.drawText('628210010' + this.folio, {
+        x: 480,
+        y: 758,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
+
+      firstPage.drawText(this.claveconcepto, {
         x: 116,
         y: 512,
         size: 8,
         font: helveticaFont,
         color: rgb(0, 0, 0)
       });
+
+    
 
     // Draw the SVG path as a black line
     // firstPage.moveDown(25)
