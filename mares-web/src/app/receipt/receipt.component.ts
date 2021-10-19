@@ -17,7 +17,7 @@ export class ReceiptComponent implements OnInit {
   constructor(private afStorage: AngularFireStorage) { }
 
   getDownloadUrl() {
-    this.afStorage.ref('receipt_chihuahua_fillable_4.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
+    this.afStorage.ref('receipt_chihuahua_fillable_11.pdf').getDownloadURL().subscribe(x => this.downloadUrl = x)    
   }
 
   ngOnInit(): void {
@@ -34,28 +34,35 @@ export class ReceiptComponent implements OnInit {
     // Load a PDFDocument from the existing PDF bytes
     const pdfDoc = await PDFDocument.load(existingPdfBytes)
     const form = pdfDoc.getForm()
-
-    form.getTextField('folio').setText('123123');
+    const folioField = form.getTextField('folio')
+    const unt = form.getTextField('untitled1')
+    unt.enableRichFormatting();
+    unt.setText('<b>222321323</b>');
+    
     form.getTextField('uadministrativa').setText('UADMINISTRATIVA');
-    form.getTextField('arearecaudadora').setText('arearecaudadora');
+    form.getTextField('arearecaudadora').setText('AREARECAUDADORA');
     form.getTextField('domicilio').setText('DOMICILIO');
-    form.getTextField('estado').setText('estado');
-    form.getTextField('delegacion').setText('delegacion');
-    form.getTextField('cp').setText('cp');
+    form.getTextField('estado').setText('ESTADO');
+    form.getTextField('delegacion').setText('DELEGACION');
+    form.getTextField('cp').setText('CP');
     form.getTextField('dia').setText('20');
     form.getTextField('mes').setText('06');
     form.getTextField('anio').setText('2021');
-    form.getTextField('nombre').setText('nombre');
-    form.getTextField('domiciliopersona').setText('domiciliopersona');
-    form.getTextField('paispersona').setText('paispersona');
-    form.getTextField('ciudadpersona').setText('ciudadpersona');
-    form.getTextField('rfc').setText('rfc');
-    form.getTextField('curp').setText('curp');
-    form.getTextField('curp').setText('curp');
-    form.getTextField('cppersona').setText('cppersona');
-    form.getTextField('telefono').setText('telefono');
-    form.getTextField('claveconcepto').setText('claveconcepto');
-    form.getTextField('cadenadependencia').setText('cadenadependencia');
+    form.getTextField('nombre').setText('NOMBRE');
+    form.getTextField('domiciliopersona').setText('DOMICILIOPERSONA');
+    form.getTextField('paispersona').setText('PAISPERSONA');
+    form.getTextField('ciudadpersona').setText('CIUDADPERSONA');
+    form.getTextField('rfc').setText('RFC');
+    form.getTextField('curp').setText('CURP');
+    form.getTextField('cppersona').setText('CPPERSONA');
+    form.getTextField('telefono').setText('TELEFONO');
+    form.getTextField('claveconcepto').setText('');
+    form.getTextField('cadenadependencia').setText('');
+
+    folioField.enableRichFormatting();
+    folioField.setText("98213892389");
+    
+
 
 
 
@@ -65,14 +72,14 @@ export class ReceiptComponent implements OnInit {
 
 
     // // // Embed the Helvetica font
-    // // const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
     // // const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
     // // // Get the first page of the document
-    // // const pages = pdfDoc.getPages()
-    // // const firstPage = pages[0]
+    const pages = pdfDoc.getPages()
+    const firstPage = pages[0]
 
-    // // firstPage.moveTo(100, firstPage.getHeight() - 5)
+    firstPage.moveTo(100, firstPage.getHeight() - 5)
 
 
     // // // Get the width and height of the first page
@@ -110,13 +117,21 @@ export class ReceiptComponent implements OnInit {
     // //     color: rgb(0, 0, 0)
     // //   });
 
-    // //   firstPage.drawText('20', {
-    // //     x: 117,
-    // //     y: 613,
-    // //     size: 8,
-    // //     font: helveticaFont,
-    // //     color: rgb(0, 0, 0)
-    // //   });
+      firstPage.drawText('20092902', {
+        x: 205,
+        y: 424,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
+
+      firstPage.drawText('CLAVECONCEPTO', {
+        x: 116,
+        y: 512,
+        size: 8,
+        font: helveticaFont,
+        color: rgb(0, 0, 0)
+      });
 
     // Draw the SVG path as a black line
     // firstPage.moveDown(25)
